@@ -2,7 +2,12 @@ const Player = (aName, aShape) => {
     const name = aName;
     const shape = aShape;
     const play = (positon, gameboard) => {
-        gameboard[positon] = shape;
+        if (gameboard[positon] == "") {
+            gameboard[positon] = shape;
+            return true;
+        }
+        else
+            return false;
     }
     return { name, shape, play };
 }
