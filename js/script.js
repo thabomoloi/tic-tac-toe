@@ -1,5 +1,4 @@
-const Player = (aName, aShape) => {
-    const name = aName;
+const Player = (aShape) => {
     const shape = aShape;
     const play = (positon, gameboard) => {
         if (gameboard[positon] == "") {
@@ -9,7 +8,7 @@ const Player = (aName, aShape) => {
         else
             return false;
     }
-    return { name, shape, play };
+    return { shape, play };
 }
 
 const GameBoard = () => {
@@ -41,5 +40,25 @@ const GameBoard = () => {
     }
     const clear = () => {
         gameboard = ["", "", "", "", "", "", "", "", ""];
+    }
+
+    return { gameboard, isWin, isTie, clear };
+}
+
+const Game = () => {
+    const player = Player("X");
+    const computer = Player("O");
+    const mode = "Easy";
+    const gameboard = GameBoard();
+
+    const setPlayerShape = (aShape) => {
+        player.shape = aShape;
+        computer.shape = (aShape == "X") ? "O" : "X";
+    }
+    const playerMove = (position) => {
+        player.play(position, gameboard.gameboard);
+    }
+    const computerMove = (position) => {
+        computer.play(position, gameboard.gameboard);
     }
 }
