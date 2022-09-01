@@ -27,4 +27,11 @@ const GameBoard = () => {
         }
         return false;
     }
+    const isTie = () => {
+        for (let i = 0; i < 9; i++) {
+            if (gameboard[i] == "")
+                return false; // the board is not full
+        }
+        return (!(isWin("X") || isWin("O")));
+    }
 }
