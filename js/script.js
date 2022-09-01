@@ -12,7 +12,9 @@ const Player = (aName, aShape) => {
     return { name, shape, play };
 }
 
-const GameBoard = () => {
+const GameBoard = (aPlayer, anAI) => {
+    const player = aPlayer;
+    const ai = anAI;
     const gameboard = ["", "", "", "", "", "", "", "", ""];
     const isWin = (shape) => {
         // check if shape appears 3 times in a row
@@ -39,4 +41,5 @@ const GameBoard = () => {
         }
         return (!(isWin("X") || isWin("O")));
     }
+
 }
