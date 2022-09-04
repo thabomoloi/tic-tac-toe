@@ -62,6 +62,12 @@ main {
 
 .gameboard {
   background-color: var(--theme-color5);
+}
+
+.board {
   min-height: 200px;
   min-width: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
