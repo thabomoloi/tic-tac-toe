@@ -34,13 +34,7 @@ class Player {
 }
 
 class Mode {
-    _mode = "";
-    /**
-     * Creates a new easy mode.
-     */
-    constructor() {
-        this._mode = "easy";
-    }
+    _mode = "easy";
     /**
      * Creates a new mode.
      * @param {string} mode 
