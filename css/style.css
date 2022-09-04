@@ -44,6 +44,18 @@ main {
 .letters {
   display: flex;
   gap: 1em;
-  padding: 1em;
+  padding: 1em 0;
   justify-content: center;
+}
+
+.letters button {
+  border: none;
+  background: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 0;
+  padding: 5px 25px;
+}
+.letters button svg {
+  display: block;
 }
