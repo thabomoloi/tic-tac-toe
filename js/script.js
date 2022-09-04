@@ -206,15 +206,17 @@ const modeDropdown = document.querySelector("select");
 const xButton = document.querySelector("button.btn.btn-player.x");
 const oButton = document.querySelector("button.btn.btn-player.o");
 const gridCells = document.querySelectorAll("button.board-cell");
-const svgs = document.querySelector("button.board-cell svg");
+const svgs = document.querySelectorAll("button.board-cell svg");
 const restartButton = document.querySelector("button.btn-restart");
 
 var mode = new Mode("easy");
 const game = new TicTacToe(mode);
-const gameController = new GameController("X", mode);
+const gameController = GameController("X", mode);
 
 const clearBoard = () => {
-
+    svgs.forEach(item => {
+        item.style.display = "none";
+    });
 }
 modeDropdown.addEventListener("change", () => {
     mode = new Mode(modeDropdown.value.toLowerCase());
