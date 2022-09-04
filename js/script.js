@@ -69,6 +69,13 @@ class Mode {
         }
         return empty;
     }
+    /**
+     * 
+     * @param {string} mode 
+     */
+    changeMode(mode) {
+        this._mode = mode;
+    }
 }
 
 class TicTacToe {
@@ -91,6 +98,13 @@ class TicTacToe {
     setPlayerLetter(letter) {
         this.human.setLetter(letter);
         this.computer.setLetter((letter === "X") ? "O" : "X");
+    }
+    /**
+     * 
+     * @param {Mode} mode 
+     */
+    setMode(mode) {
+        this.mode = mode;
     }
     clearBoard() {
         this.gameboard = ["", "", "", "", "", "", "", "", ""];
@@ -158,11 +172,14 @@ class TicTacToe {
 /**
  * 
  */
-GameController = (playerLetter, gamemode) => {
+const GameController = (playerLetter, gamemode) => {
     const mode = new Mode(gamemode);
-    const game = new TicTacToe();
-    game.setPlayerLetter(playerLetter);
+    const game = new TicTacToe(mode);
 
+    game.setPlayerLetter(playerLetter);
+    const setPlayerLetter = (letter) => {
+        game.setPlayerLetter(letter);
+    }
     const playerMove = (position) => {
         game.humanMove(position);
         if (!game.gameOver())
@@ -174,6 +191,11 @@ GameController = (playerLetter, gamemode) => {
     const winner = () => {
         return game.isWin("X") ? "X" : (game.isWin("O") ? "O" : "T");
     }
+    const setMode = (amode) => {
+        mode.setMode(amode);
+        game.setMode(mode);
+    }
+    return { setPlayerLetter, playerMove, gameOver, winner, setMode };
 }
 
 
@@ -184,13 +206,20 @@ const modeDropdown = document.querySelector("select");
 const xButton = document.querySelector("button.btn.btn-player.x");
 const oButton = document.querySelector("button.btn.btn-player.o");
 const gridCells = document.querySelectorAll("button.board-cell");
+const svgs = document.querySelector("button.board-cell svg");
 const restartButton = document.querySelector("button.btn-restart");
 
 var mode = new Mode("easy");
 const game = new TicTacToe(mode);
+const gameController = new GameController("X", mode);
+
+const clearBoard = () => {
+
+}
 modeDropdown.addEventListener("change", () => {
     mode = new Mode(modeDropdown.value.toLowerCase());
 });
 xButton.addEventListener("click", () => {
-    p
+    game.setPlayerLetter("X");
+    clearBoard();
 });
