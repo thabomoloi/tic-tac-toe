@@ -1,6 +1,6 @@
 class Player {
     /** letter of the player */
-    _letter;
+    _letter = "";
     /**
      * Creates a new player.
      * @param {string} letter letter of the player.
@@ -33,6 +33,49 @@ class Player {
 
 }
 
+class Mode {
+    _mode = "";
+    /**
+     * Creates a new easy mode.
+     */
+    constructor() {
+        this._mode = "easy";
+    }
+    /**
+     * Creates a new mode.
+     * @param {string} mode 
+     */
+    constructor(mode) {
+        this._mode = mode;
+    }
+    /**
+     * Get valid move depending on the mode.
+     * @param {string[]} gameboard 
+     */
+    getMove(gameboard) {
+        empty = this.findEmpty(gameboard);
+        if (this._mode === "easy") {
+            return empty[Math.floor(Math.random() * empty.length)];
+        }
+        if (this._mode === "medium") {
+
+        }
+
+    }
+    /**
+     * Finds empty positions in a gameboard.
+     * @param {string[]} gameboard 
+     * @returns An array of empty positions.
+     */
+    findEmpty(gameboard) {
+        empty = []
+        for (let i = 0; i < gameboard.length; i++) {
+            if (gameboard[i] === "")
+                empty.append(i);
+        }
+        return empty;
+    }
+}
 
 /**
  * const Player1 = (aShape) => {
