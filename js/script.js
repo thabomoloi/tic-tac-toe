@@ -77,25 +77,92 @@ class Mode {
     }
 }
 
-/**
- * const Player1 = (aShape) => {
-    const shape = aShape;
-    const play = (positon, gameboard) => {
-        if (gameboard[positon] == "") {
-            gameboard[positon] = shape;
+class TicTacToe {
+    gameboard = ["", "", "", "", "", "", "", "", ""];
+    mode = new Mode();
+    human = new Player("X");
+    computer = new Player("O");
+
+    /**
+     * Creates a new game with a new mode.
+     * @param {Mode} mode 
+     */
+    constructor(mode) {
+        this.mode = mode;
+    }
+    /**
+     * Sets the letter of the player.
+     * @param {string} letter 
+     */
+    setPlayerLetter(letter) {
+        this.human.setLetter(letter);
+        this.computer.setLetter((letter === "X") ? "O" : "X");
+    }
+    clearBoard() {
+        this.gameboard = ["", "", "", "", "", "", "", "", ""];
+    }
+    restart() {
+        clearBoard();
+    }
+    isBoardFull() {
+        for (let i = 0; i < this.gameboard.length; i++) {
+            if (this.gameboard[i] === "")
+                return false;
+        }
+        return true;
+    }
+    isWin(shape) {
+        // check if shape appears 3 times in a row
+        for (let i in [0, 3, 6]) {
+            if (this.gameboard[i] == shape && this.gameboard[i + 1] == shape && this.gameboard[i + 2] == shape)
+                return true;
+        }
+        // check if shape appears 3 times in a column
+        for (let i in [0, 1, 2]) {
+            if (this.gameboard[i] == shape && this.gameboard[i + 3] == shape && this.gameboard[i + 6] == shape)
+                return true;
+        }
+        // check if shape appears 3 times in a diagonal
+        for (let i in [0, 2]) {
+            if (this.gameboard[i] == shape && this.gameboard[4] == shape && this.gameboard[8 - i] == shape)
+                return true;
+        }
+        return false;
+    }
+    isTie() {
+        if (!this.isBoardFull)
+            return false;
+        return (!(this.isWin("X") || this.isWin("O")));
+    }
+    gameOver() {
+        return (this.isWin("X") || this.isWin("O") || this.isTie());
+    }
+    /**
+     * 
+     * @param {number} position 
+     */
+    humanMove(position) {
+        if (this.gameboard[position] === "") {
+            this.human.play(this.gameboard, position);
             return true;
         }
-        else
+        else {
             return false;
+        }
     }
-    return { shape, play };
-}
-class Player {
+    computerMove() {
+        if (this.gameboard[position] === "") {
+            this.computer.play(this.gameboard, this.mode.getMove(this.gameboard));
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 }
-const RandomAI = (aLetter) => {
 
-}
+/**
 const GameBoard = () => {
     const gameboard = ["", "", "", "", "", "", "", "", ""];
     const isWin = (shape) => {
