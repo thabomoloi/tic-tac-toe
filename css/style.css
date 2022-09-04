@@ -59,3 +59,9 @@ main {
 .letters button svg {
   display: block;
 }
+
+.gameboard {
+  background-color: var(--theme-color5);
+  min-height: 200px;
+  min-width: 200px;
+}
