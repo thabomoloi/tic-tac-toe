@@ -195,7 +195,10 @@ const GameController = (playerLetter, gamemode) => {
         mode.setMode(amode);
         game.setMode(mode);
     }
-    return { setPlayerLetter, playerMove, gameOver, winner, setMode };
+    const getBoard = () => {
+        return game.gameboard;
+    }
+    return { setPlayerLetter, playerMove, gameOver, winner, setMode, getBoard };
 }
 
 
@@ -217,6 +220,9 @@ const clearBoard = () => {
     svgs.forEach(item => {
         item.style.display = "none";
     });
+    gridCells.forEach(item => {
+        item.disabled = false;
+    })
 }
 modeDropdown.addEventListener("change", () => {
     mode = new Mode(modeDropdown.value.toLowerCase());
@@ -225,3 +231,14 @@ xButton.addEventListener("click", () => {
     game.setPlayerLetter("X");
     clearBoard();
 });
+oButton.addEventListener("click", () => {
+    game.setPlayerLetter("O");
+    clearBoard();
+});
+
+gridCells.forEach(item => {
+    item.addEventListener("click", () => {
+        gameController.playerMove(parseInt(item.id.charAt(item.id.length - 1)));
+        item.disabled = true;
+    });
+})
