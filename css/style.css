@@ -32,3 +32,11 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+.mode select {
+  border: none;
+  border-bottom: 2px solid black;
+  background: none;
+  background-color: var(--theme-color1);
+  padding: 2px;
+}
