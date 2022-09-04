@@ -40,3 +40,10 @@ main {
   background-color: var(--theme-color1);
   padding: 2px;
 }
+
+.letters {
+  display: flex;
+  gap: 1em;
+  padding: 1em;
+  justify-content: center;
+}
