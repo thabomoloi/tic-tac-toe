@@ -1,4 +1,41 @@
-const Player = (aShape) => {
+class Player {
+    /** letter of the player */
+    _letter;
+    /**
+     * Creates a new player.
+     * @param {string} letter letter of the player.
+     */
+    constructor(letter) {
+        this.setLetter(letter);
+    }
+    /**
+     * Sets the letter of the player.
+     * @param {string} letter 
+     */
+    setLetter(letter) {
+        this._letter = letter;
+    }
+    /***
+     * Retrieves the letter of the player.
+     * @returns Letter of the player.
+     */
+    getLetter() {
+        return this._letter;
+    }
+    /**
+     * 
+     * @param {string[]} gameboard 
+     * @param {number} position 
+     */
+    play(gameboard, position) {
+        gameboard[position] = this._letter;
+    }
+
+}
+
+
+/**
+ * const Player1 = (aShape) => {
     const shape = aShape;
     const play = (positon, gameboard) => {
         if (gameboard[positon] == "") {
@@ -10,7 +47,12 @@ const Player = (aShape) => {
     }
     return { shape, play };
 }
+class Player {
 
+}
+const RandomAI = (aLetter) => {
+
+}
 const GameBoard = () => {
     const gameboard = ["", "", "", "", "", "", "", "", ""];
     const isWin = (shape) => {
@@ -62,3 +104,4 @@ const Game = () => {
         computer.play(position, gameboard.gameboard);
     }
 }
+*/
