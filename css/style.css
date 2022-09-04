@@ -5,3 +5,14 @@
   --theme-color4: #1e40af;
   --theme-color5: #1e3a8a;
 }
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  box-sizing: inherit;
+}
