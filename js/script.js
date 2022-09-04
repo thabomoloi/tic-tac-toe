@@ -161,57 +161,23 @@ class TicTacToe {
     }
 
 }
-
 /**
-const GameBoard = () => {
-    const gameboard = ["", "", "", "", "", "", "", "", ""];
-    const isWin = (shape) => {
-        // check if shape appears 3 times in a row
-        for (let i in [0, 3, 6]) {
-            if (gameboard[i] == shape && gameboard[i + 1] == shape && gameboard[i + 2] == shape)
-                return true;
-        }
-        // check if shape appears 3 times in a column
-        for (let i in [0, 1, 2]) {
-            if (gameboard[i] == shape && gameboard[i + 3] == shape && gameboard[i + 6] == shape)
-                return true;
-        }
-        // check if shape appears 3 times in a diagonal
-        for (let i in [0, 2]) {
-            if (gameboard[i] == shape && gameboard[4] == shape && gameboard[8 - i] == shape)
-                return true;
-        }
-        return false;
-    }
-    const isTie = () => {
-        for (let i = 0; i < 9; i++) {
-            if (gameboard[i] == "")
-                return false; // the board is not full
-        }
-        return (!(isWin("X") || isWin("O")));
-    }
-    const clear = () => {
-        gameboard = ["", "", "", "", "", "", "", "", ""];
-    }
+ * 
+ */
+GameController = (playerLetter, gamemode) => {
+    const mode = new Mode(gamemode);
+    const game = new TicTacToe();
+    game.setPlayerLetter(playerLetter);
 
-    return { gameboard, isWin, isTie, clear };
-}
-
-const Game = () => {
-    const player = Player("X");
-    const computer = Player("O");
-    const mode = "Easy";
-    const gameboard = GameBoard();
-
-    const setPlayerShape = (aShape) => {
-        player.shape = aShape;
-        computer.shape = (aShape == "X") ? "O" : "X";
-    }
     const playerMove = (position) => {
-        player.play(position, gameboard.gameboard);
+        game.humanMove(position);
+        if (!game.gameOver())
+            game.computerMove();
     }
-    const computerMove = (position) => {
-        computer.play(position, gameboard.gameboard);
+    const gameOver = () => {
+        return game.gameOver();
+    }
+    const winner = () => {
+        return game.isWin("X") ? "X" : (game.isWin("O") ? "O" : "T");
     }
 }
-*/
