@@ -15,4 +15,12 @@ html {
 *::after {
   font-family: inherit;
   box-sizing: inherit;
+  font-size: inherit;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+  font-size: 1.2em;
 }
