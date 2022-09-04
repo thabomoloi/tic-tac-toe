@@ -175,3 +175,22 @@ GameController = (playerLetter, gamemode) => {
         return game.isWin("X") ? "X" : (game.isWin("O") ? "O" : "T");
     }
 }
+
+
+
+//=========================================================================
+
+const modeDropdown = document.querySelector("select");
+const xButton = document.querySelector("button.btn.btn-player.x");
+const oButton = document.querySelector("button.btn.btn-player.o");
+const gridCells = document.querySelectorAll("button.board-cell");
+const restartButton = document.querySelector("button.btn-restart");
+
+var mode = new Mode("easy");
+const game = new TicTacToe(mode);
+modeDropdown.addEventListener("change", () => {
+    mode = new Mode(modeDropdown.value.toLowerCase());
+});
+xButton.addEventListener("click", () => {
+    p
+});
