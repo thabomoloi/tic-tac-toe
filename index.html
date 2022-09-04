@@ -21,22 +21,292 @@
             </form>
           </div>
           <div class="letters">
-            <button class="btn btn-player x active">X</button>
-            <button class="btn btn-player o not-active">O</button>
+            <button class="btn btn-player x active">
+              <svg height="20" width="20" aria-label="X">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="18"
+                  y2="18"
+                  style="stroke: #000; stroke-width: 4"
+                />
+                <line
+                  x1="2"
+                  y1="18"
+                  x2="18"
+                  y2="2"
+                  style="stroke: #000; stroke-width: 4"
+                />
+              </svg>
+            </button>
+            <button class="btn btn-player o not-active">
+              <svg height="20" width="20" aria-label="O">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8"
+                  stroke="black"
+                  stroke-width="4"
+                  fill="none"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <div class="gameboard">
           <div class="board">
-            <button class="board-cell" id="cell-0"></button>
-            <button class="board-cell" id="cell-1"></button>
-            <button class="board-cell" id="cell-2"></button>
-            <button class="board-cell" id="cell-3"></button>
-            <button class="board-cell" id="cell-4"></button>
-            <button class="board-cell" id="cell-4"></button>
-            <button class="board-cell" id="cell-6"></button>
-            <button class="board-cell" id="cell-7"></button>
-            <button class="board-cell" id="cell-8"></button>
-            <button class="board-cell" id="cell-9"></button>
+            <button class="board-cell" id="cell-0">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-1">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-2">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-3">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-4">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-5">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-6">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-7">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
+            <button class="board-cell" id="cell-8">
+              <svg width="50" height="50" aria-label="X" display="none">
+                <line
+                  x1="2"
+                  y1="2"
+                  x2="48"
+                  y2="48"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+                <line
+                  x1="2"
+                  y1="48"
+                  x2="48"
+                  y2="2"
+                  style="stroke: rgb(30, 30, 30); stroke-width: 5"
+                />
+              </svg>
+              <svg width="50" height="50" aria-label="O" display="none">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="23"
+                  stroke="white"
+                  stroke-width="5"
+                  fill="none"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <button class="btn-restart">Restart</button>
