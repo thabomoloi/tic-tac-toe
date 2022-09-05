@@ -106,6 +106,7 @@ const TicTacToe = () => {
     const mode = "easy"
     const board = ["", "", "", "", "", "", "", "", ""];
 
+    const getBoard = () => board;
     /**
      * Sets the letter of the player
      * @param {string} letter 
@@ -149,4 +150,5 @@ const TicTacToe = () => {
         }
         return { "moved": false, "position": position };
     }
+    return { getBoard, setPlayer, setMode, getPlayer, getAI, clearBoard, humanMove, computerMove };
 }
