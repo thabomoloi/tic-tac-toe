@@ -36,3 +36,20 @@ const findMoves = (() => {
     return { findMove };
 })();
 
+const TicTacToe = (gamemode, letter) => {
+    const human = letter;
+    const computer = letter === "X" ? "O" : "X";
+    const mode = gamemode;
+    const board = ["", "", "", "", "", "", "", "", ""];
+
+    /**
+     * Check if a board is full.
+     */
+    const isBoardFull = () => {
+        for (let i = 0; i < board.length; i++)
+            if (board[i] === "")
+                return false;
+        return true;
+    }
+
+}
