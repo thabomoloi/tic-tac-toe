@@ -83,6 +83,9 @@ main {
 .board button {
   border: none;
   background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .board-cell.row1,
 .board-cell.row2 {
