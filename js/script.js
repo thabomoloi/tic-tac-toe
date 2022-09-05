@@ -1,4 +1,4 @@
-const FindMoves = () => {
+const findMoves = (() => {
     /**
      * Gets the move in an easy mode.
      * Looks for an empty random space.
@@ -34,4 +34,5 @@ const FindMoves = () => {
     }
 
     return { findMove };
-}
+})();
+
