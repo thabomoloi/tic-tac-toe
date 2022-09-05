@@ -115,9 +115,38 @@ const TicTacToe = () => {
         const computer = letter === "X" ? "O" : "X";
     }
     /**
+     * 
+     * @param {string} aMode 
+     */
+    const setMode = (aMode) => {
+        mode = aMode;
+    }
+    const getPlayer = () => human;
+    const getAI = () => computer;
+    /**
      * Clears the board.
      */
     const clearBoard = () => {
         board = ["", "", "", "", "", "", "", "", ""];
+    }
+    /**
+     * Places the letter of playerin board.
+     * @param {number} position 
+     * @returns 
+     */
+    const humanMove = (position) => {
+        if (board[position] == "") {
+            board[position] == human;
+            return { "moved": true, "position": position };
+        }
+        return { "moved": false, "position": position };
+    }
+    const computerMove = () => {
+        let position = findMoves.findMove(board, computer, mode);
+        if (board[position] == "") {
+            board[position] = computer;
+            return { "moved": true, "position": position };
+        }
+        return { "moved": false, "position": position };
     }
 }
