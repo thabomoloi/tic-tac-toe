@@ -51,5 +51,18 @@ const TicTacToe = (gamemode, letter) => {
                 return false;
         return true;
     }
-
+    /**
+     * Sets the letter of the player
+     * @param {string} letter 
+     */
+    const setPlayer = (letter) => {
+        human = letter;
+        const computer = letter === "X" ? "O" : "X";
+    }
+    /**
+     * Clears the board.
+     */
+    const clearBoard = () => {
+        board = ["", "", "", "", "", "", "", "", ""];
+    }
 }
