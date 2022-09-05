@@ -101,6 +101,14 @@ class TicTacToe {
     }
     /**
      * 
+     * @param {string} letter 
+     * @returns 
+     */
+    getPlayerLetter(letter) {
+        return this.human.getLetter();
+    }
+    /**
+     * 
      * @param {Mode} mode 
      */
     setMode(mode) {
@@ -198,7 +206,10 @@ const GameController = (playerLetter, gamemode) => {
     const getBoard = () => {
         return game.gameboard;
     }
-    return { setPlayerLetter, playerMove, gameOver, winner, setMode, getBoard };
+    const getPlayerLetter = () => {
+        return game.getPlayerLetter();
+    }
+    return { setPlayerLetter, playerMove, gameOver, winner, setMode, getBoard, getPlayerLetter };
 }
 
 
@@ -239,6 +250,9 @@ oButton.addEventListener("click", () => {
 gridCells.forEach(item => {
     item.addEventListener("click", () => {
         gameController.playerMove(parseInt(item.id.charAt(item.id.length - 1)));
+        const letter = gameController.getPlayerLetter();
+        const svg = document.querySelector(`#${item.id} ${letter === "X" ? "svg:first-child" : "svg:nth-child(2)"}`);
+        svg.style.display = "block";
         item.disabled = true;
     });
 })
