@@ -154,7 +154,22 @@ const TicTacToe = () => {
 }
 
 const openGameOverModal = (winner) => {
+    const modal = document.querySelector("#gameovermodal");
+    const close = document.querySelector(".close");
 
+    modal.style.display = "block";
+    close.addEventListener("click", () => {
+        modal.style.display = "none";
+        gameController.clearGame();
+        setTimeout(() => gameController.clearGame(), 500);
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            setTimeout(() => gameController.clearGame(), 500);
+        }
+    })
 }
 const gameController = (() => {
     const ttt_check = game();
@@ -225,7 +240,8 @@ const gameController = (() => {
 })();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
-    var mode = "easy";
+    var mode = selectMode.value.toLowerCase();
+    gameController.setMode(mode);
 
     const xBtn = document.querySelector(".btn.btn-player.x");
     xBtn.classList.toggle("not-active");
