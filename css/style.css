@@ -200,3 +200,10 @@ select:hover {
 .modal-body {
   padding: 2px 16px;
 }
+.modal h1 {
+  text-align: center;
+}
+#results {
+  padding: 1em;
+  text-align: center;
+}
