@@ -57,7 +57,7 @@ const game = (() => {
     /**
      * Check if a player has won.
      * @param {string} letter 
-     * @param {string} board 
+     * @param {string[]} board 
      */
     const isWin = (letter, board) => {
         // Rows
@@ -153,6 +153,37 @@ const TicTacToe = () => {
     return { getBoard, setPlayer, setMode, getPlayer, getAI, clearBoard, humanMove, computerMove };
 }
 
+const openGameOverModal = (winner) => {
+
+}
+const gameController = (() => {
+    const ttt_check = game();
+    const ttt = TicTacToe();
+
+    const display = (position) => {
+
+    }
+
+    const setMode = (mode) => ttt.setMode(mode);
+    const play = (move) => {
+        if (move.moved)
+            setTimeout(1000, display(move.position));
+        if (ttt_check.isGameOver(ttt.getBoard())) {
+            if (ttt_check.isTie(ttt.getBoard()))
+                openGameOverModal("T");
+            else if (ttt_check.isWin("X", ttt.getBoard())) {
+                openGameOverModal("X");
+            }
+            else {
+                openGameOverModal("O");
+            }
+        }
+    }
+    const playerMove = (position) => {
+        const move = ttt.humanMove(position);
+        play(move);
+    };
+})();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
     var mode = "easy";
@@ -163,10 +194,6 @@ const GAME = (() => {
     oBtn.classList.toggle("active");
 
     const boardBtns = document.querySelectorAll(".board-cell");
-
-    const display = (position) => {
-
-    }
 
     const addGameEventListeners = () => {
         //======== select event listeners ===========
