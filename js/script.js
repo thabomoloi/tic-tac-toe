@@ -158,7 +158,9 @@ const GAME = (() => {
     var mode = "easy";
 
     const xBtn = document.querySelector(".btn.btn-player.x");
+    xBtn.classList.toggle("not-active");
     const oBtn = document.querySelector(".btn.btn-player.o");
+    oBtn.classList.toggle("active");
 
     const display = (position) => {
 
@@ -169,6 +171,23 @@ const GAME = (() => {
         selectMode.addEventListener("change", () => {
             mode = selectMode.value.toLowerCase();
             console.log(mode);
+        });
+
+        //=============================================
+        //============ SWITCH PLAYER ==================
+        const switchLetter = () => {
+            xBtn.classList.toggle("not-active");
+            xBtn.classList.toggle("active");
+            oBtn.classList.toggle("not-active");
+            oBtn.classList.toggle("active");
+        };
+        xBtn.addEventListener("click", () => {
+            if (xBtn.classList.contains("not-active"))
+                switchLetter();
+        });
+        oBtn.addEventListener("click", () => {
+            if (oBtn.classList.contains("not-active"))
+                switchLetter();
         });
     }
 
