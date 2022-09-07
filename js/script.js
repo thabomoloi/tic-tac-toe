@@ -162,6 +162,8 @@ const GAME = (() => {
     const oBtn = document.querySelector(".btn.btn-player.o");
     oBtn.classList.toggle("active");
 
+    const boardBtns = document.querySelectorAll(".board-cell");
+
     const display = (position) => {
 
     }
@@ -189,6 +191,13 @@ const GAME = (() => {
             if (oBtn.classList.contains("not-active"))
                 switchLetter();
         });
+
+        boardBtns.forEach((item) => {
+            item.addEventListener("click", () => {
+                let position = parseInt(item.id.charAt(item.id.length - 1));
+                //
+            });
+        })
     }
 
     return { addGameEventListeners }
