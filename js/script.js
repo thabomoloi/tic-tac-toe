@@ -233,7 +233,7 @@ const GAME = (() => {
     oBtn.classList.toggle("active");
 
     const boardBtns = document.querySelectorAll(".board-cell");
-
+    const restartBtn = document.querySelector(".btn-restart");
     const addGameEventListeners = () => {
         //======== select event listeners ===========
         selectMode.addEventListener("change", () => {
@@ -268,7 +268,11 @@ const GAME = (() => {
                 let position = parseInt(item.id.charAt(item.id.length - 1));
                 gameController.playerMove(position);
             });
-        })
+        });
+
+        restartBtn.addEventListener("click", () => {
+            gameController.clearGame();
+        });
     }
 
     return { addGameEventListeners }
