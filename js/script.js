@@ -152,3 +152,16 @@ const TicTacToe = () => {
     }
     return { getBoard, setPlayer, setMode, getPlayer, getAI, clearBoard, humanMove, computerMove };
 }
+
+const GAME = (() => {
+    const selectMode = document.querySelector("select");
+
+    const xBtn = document.querySelector(".btn.btn-player.x");
+    const oBtn = document.querySelector(".btn.btn-player.o");
+
+    const display = (position) => {
+
+    }
+
+
+})();
