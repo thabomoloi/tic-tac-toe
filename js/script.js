@@ -84,7 +84,7 @@ const game = (() => {
      * @param {string[]} board 
      */
     const isTie = (board) => {
-        if (isWin("X") || isWin("O"))
+        if (isWin("X", board) || isWin("O", board))
             return false;
         if (!isBoardFull(board))
             return false;
@@ -95,6 +95,7 @@ const game = (() => {
      * @param {string[]} board 
      */
     const isGameOver = (board) => {
+        console.log(board);
         return (isWin("X", board) || isWin("O", board) || isTie(board));
     }
     return { isWin, isTie, isGameOver };
@@ -137,7 +138,7 @@ const TicTacToe = () => {
      */
     const humanMove = (position) => {
         if (board[position] == "") {
-            board[position] == human;
+            board[position] = human;
             return { "moved": true, "position": position };
         }
         return { "moved": false, "position": position };
@@ -160,14 +161,18 @@ const gameController = (() => {
     const ttt_check = game();
     const ttt = TicTacToe();
 
-    const display = (position) => {
-
+    const display = (position, letter) => {
+        const cell = document.querySelector(`#cell-${position}`);
+        const cellSeletor = `#${cell.id} svg:${(letter == "X") ? "first-child" : "last-child"}`;
+        const svg = document.querySelector(cellSeletor);
+        svg.style.display = "block";
+        cell.disabled = true;
     }
 
     const setMode = (mode) => ttt.setMode(mode);
-    const play = (move) => {
+    const play = (move, letter) => {
         if (move.moved)
-            setTimeout(1000, display(move.position));
+            setTimeout(() => display(move.position, letter), 250);
         if (ttt_check.isGameOver(ttt.getBoard())) {
             if (ttt_check.isTie(ttt.getBoard()))
                 openGameOverModal("T");
@@ -180,9 +185,20 @@ const gameController = (() => {
         }
     }
     const playerMove = (position) => {
-        const move = ttt.humanMove(position);
-        play(move);
+        if (!ttt_check.isGameOver(ttt.getBoard())) {
+            const move = ttt.humanMove(position);
+            play(move, ttt.getPlayer());
+            computerMove();
+        }
     };
+    const computerMove = () => {
+        if (!ttt_check.isGameOver(ttt.getBoard())) {
+            const move = ttt.computerMove();
+            play(move, ttt.getAI());
+        }
+    }
+
+    return { setMode, playerMove, computerMove };
 })();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
@@ -199,7 +215,7 @@ const GAME = (() => {
         //======== select event listeners ===========
         selectMode.addEventListener("change", () => {
             mode = selectMode.value.toLowerCase();
-            console.log(mode);
+            gameController.setMode(mode);
         });
 
         //=============================================
@@ -222,7 +238,7 @@ const GAME = (() => {
         boardBtns.forEach((item) => {
             item.addEventListener("click", () => {
                 let position = parseInt(item.id.charAt(item.id.length - 1));
-                //
+                gameController.playerMove(position);
             });
         })
     }
