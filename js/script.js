@@ -155,6 +155,7 @@ const TicTacToe = () => {
 
 const GAME = (() => {
     const selectMode = document.querySelector("select");
+    var mode = "easy";
 
     const xBtn = document.querySelector(".btn.btn-player.x");
     const oBtn = document.querySelector(".btn.btn-player.o");
@@ -163,5 +164,15 @@ const GAME = (() => {
 
     }
 
+    const addGameEventListeners = () => {
+        //======== select event listeners ===========
+        selectMode.addEventListener("change", () => {
+            mode = selectMode.value.toLowerCase();
+            console.log(mode);
+        });
+    }
 
+    return { addGameEventListeners }
 })();
+
+GAME.addGameEventListeners();
