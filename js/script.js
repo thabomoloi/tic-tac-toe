@@ -95,7 +95,6 @@ const game = (() => {
      * @param {string[]} board 
      */
     const isGameOver = (board) => {
-        console.log(board);
         return (isWin("X", board) || isWin("O", board) || isTie(board));
     }
     return { isWin, isTie, isGameOver };
@@ -169,7 +168,12 @@ const gameController = (() => {
         svg.style.display = "block";
         cell.disabled = true;
     }
-
+    const cantChange = () => {
+        if ((ttt.getBoard().indexOf("X") != -1 && ttt.getBoard().indexOf("O") != -1) ||
+            ttt_check.isGameOver(ttt.getBoard()))
+            return true;
+        return false;
+    }
     const setMode = (mode) => ttt.setMode(mode);
     const play = (move, letter) => {
         if (move.moved)
@@ -214,7 +218,7 @@ const gameController = (() => {
         });
     }
 
-    return { setMode, playerMove, computerMove, clearGame };
+    return { setMode, playerMove, computerMove, clearGame, cantChange };
 })();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
@@ -243,14 +247,16 @@ const GAME = (() => {
             oBtn.classList.toggle("active");
         };
         xBtn.addEventListener("click", () => {
-            if (xBtn.classList.contains("not-active")) {
+            if (xBtn.classList.contains("not-active") && !gameController.cantChange()) {
                 switchLetter();
-
             }
         });
         oBtn.addEventListener("click", () => {
-            if (oBtn.classList.contains("not-active"))
+            if (oBtn.classList.contains("not-active") && !gameController.cantChange()) {
                 switchLetter();
+
+
+            }
         });
 
         boardBtns.forEach((item) => {
