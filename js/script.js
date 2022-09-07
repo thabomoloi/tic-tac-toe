@@ -199,12 +199,12 @@ const gameController = (() => {
         if (ttt_check.isGameOver(ttt.getBoard())) {
             endGame();
             if (ttt_check.isTie(ttt.getBoard()))
-                openGameOverModal("T");
+                setTimeout(() => openGameOverModal("T"), 1000);
             else if (ttt_check.isWin("X", ttt.getBoard())) {
-                openGameOverModal("X");
+                setTimeout(() => openGameOverModal("X"), 1000);
             }
             else {
-                openGameOverModal("O");
+                setTimeout(() => openGameOverModal("O"), 1000);
             }
         }
     }
