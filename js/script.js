@@ -105,7 +105,7 @@ const TicTacToe = () => {
     const human = "X";
     const computer = "O";
     const mode = "easy"
-    const board = ["", "", "", "", "", "", "", "", ""];
+    var board = ["", "", "", "", "", "", "", "", ""];
 
     const getBoard = () => board;
     /**
@@ -160,6 +160,7 @@ const openGameOverModal = (winner) => {
 const gameController = (() => {
     const ttt_check = game();
     const ttt = TicTacToe();
+    const buttons = document.querySelectorAll("button.board-cell");
 
     const display = (position, letter) => {
         const cell = document.querySelector(`#cell-${position}`);
@@ -174,6 +175,7 @@ const gameController = (() => {
         if (move.moved)
             setTimeout(() => display(move.position, letter), 250);
         if (ttt_check.isGameOver(ttt.getBoard())) {
+            endGame();
             if (ttt_check.isTie(ttt.getBoard()))
                 openGameOverModal("T");
             else if (ttt_check.isWin("X", ttt.getBoard())) {
@@ -197,8 +199,22 @@ const gameController = (() => {
             play(move, ttt.getAI());
         }
     }
+    const endGame = () => {
+        buttons.forEach((item) => {
+            item.disabled = true;
+        });
+    }
+    const clearGame = () => {
+        ttt.clearBoard();
+        buttons.forEach((cell) => {
+            const cellSeletor = `#${cell.id} svg`;
+            const svgs = document.querySelectorAll(cellSeletor);
+            svgs.forEach((svg) => { svg.style.display = ""; });
+            cell.disabled = false;
+        });
+    }
 
-    return { setMode, playerMove, computerMove };
+    return { setMode, playerMove, computerMove, clearGame };
 })();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
@@ -227,8 +243,10 @@ const GAME = (() => {
             oBtn.classList.toggle("active");
         };
         xBtn.addEventListener("click", () => {
-            if (xBtn.classList.contains("not-active"))
+            if (xBtn.classList.contains("not-active")) {
                 switchLetter();
+
+            }
         });
         oBtn.addEventListener("click", () => {
             if (oBtn.classList.contains("not-active"))
