@@ -156,8 +156,18 @@ const TicTacToe = () => {
 const openGameOverModal = (winner) => {
     const modal = document.querySelector("#gameovermodal");
     const close = document.querySelector(".close");
-
     modal.style.display = "block";
+
+    const modalMsg = document.querySelector("#message");
+    const results = document.querySelector("#results");
+
+    if (winner == "T") {
+        modalMsg.innerText = "DRAW";
+        results.innerText = "XO";
+    } else {
+        modalMsg.innerText = "WINNER";
+        results.innerText = winner;
+    }
     close.addEventListener("click", () => {
         modal.style.display = "none";
         gameController.clearGame();
@@ -193,32 +203,32 @@ const gameController = (() => {
         return false;
     }
     const setMode = (mode) => ttt.setMode(mode);
-    const play = (move, letter) => {
+    const play = (move, letter, timeout) => {
         if (move.moved)
-            setTimeout(() => display(move.position, letter), 250);
+            setTimeout(() => display(move.position, letter), timeout);
         if (ttt_check.isGameOver(ttt.getBoard())) {
             endGame();
             if (ttt_check.isTie(ttt.getBoard()))
-                setTimeout(() => openGameOverModal("T"), 1000);
+                setTimeout(() => openGameOverModal("T"), 3000);
             else if (ttt_check.isWin("X", ttt.getBoard())) {
-                setTimeout(() => openGameOverModal("X"), 1000);
+                setTimeout(() => openGameOverModal("X"), 3000);
             }
             else {
-                setTimeout(() => openGameOverModal("O"), 1000);
+                setTimeout(() => openGameOverModal("O"), 3000);
             }
         }
     }
     const playerMove = (position) => {
         if (!ttt_check.isGameOver(ttt.getBoard())) {
             const move = ttt.humanMove(position);
-            play(move, ttt.getPlayer());
+            play(move, ttt.getPlayer(), 500);
             computerMove();
         }
     };
     const computerMove = () => {
         if (!ttt_check.isGameOver(ttt.getBoard())) {
             const move = ttt.computerMove();
-            play(move, ttt.getAI());
+            play(move, ttt.getAI(), 1000);
         }
     }
     const endGame = () => {
