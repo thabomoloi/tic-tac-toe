@@ -101,9 +101,9 @@ const game = (() => {
 });
 
 const TicTacToe = () => {
-    const human = "X";
-    const computer = "O";
-    const mode = "easy"
+    var human = "X";
+    var computer = "O";
+    var mode = "easy"
     var board = ["", "", "", "", "", "", "", "", ""];
 
     const getBoard = () => board;
@@ -113,7 +113,7 @@ const TicTacToe = () => {
      */
     const setPlayer = (letter) => {
         human = letter;
-        const computer = letter === "X" ? "O" : "X";
+        computer = letter === "X" ? "O" : "X";
     }
     /**
      * 
@@ -161,6 +161,9 @@ const gameController = (() => {
     const ttt = TicTacToe();
     const buttons = document.querySelectorAll("button.board-cell");
 
+    const setPlayer = (letter) => {
+        ttt.setPlayer(letter);
+    }
     const display = (position, letter) => {
         const cell = document.querySelector(`#cell-${position}`);
         const cellSeletor = `#${cell.id} svg:${(letter == "X") ? "first-child" : "last-child"}`;
@@ -218,7 +221,7 @@ const gameController = (() => {
         });
     }
 
-    return { setMode, playerMove, computerMove, clearGame, cantChange };
+    return { setPlayer, setMode, playerMove, computerMove, clearGame, cantChange };
 })();
 const GAME = (() => {
     const selectMode = document.querySelector("select");
@@ -249,13 +252,14 @@ const GAME = (() => {
         xBtn.addEventListener("click", () => {
             if (xBtn.classList.contains("not-active") && !gameController.cantChange()) {
                 switchLetter();
+                gameController.setPlayer("X");
             }
         });
         oBtn.addEventListener("click", () => {
             if (oBtn.classList.contains("not-active") && !gameController.cantChange()) {
                 switchLetter();
-
-
+                gameController.setPlayer("O");
+                gameController.computerMove();
             }
         });
 
