@@ -16,12 +16,13 @@ const findMoves = (() => {
         }
         return empty[Math.floor(Math.random() * empty.length)];
     }
-    const isEmpty = (board) => {
+    const isEmptyLetter = (board, letter) => {
+        let count = 0;
         for (let i = 0; i < board.length; i++) {
-            if (board[i] != "")
-                return false;
+            if (board[i] == letter)
+                count++;
         }
-        return true;
+        return (count < 1);
     }
     const getWinningMove = (board, letter) => {
         /**
@@ -38,11 +39,36 @@ const findMoves = (() => {
             if (board[i] == "" && board[i + j] == letter && board[i + j * 2] == letter)
                 return i;
         }
-        for (let i in [0, 3, 6]) {
+        for (let i = 0; i < 7; i += 3) {
             if (getPos(i, 1) != undefined) return getPos(i, 1);
         }
-        for (let i in [0, 1, 2]) {
-            if (getPos(i, 3) != undefined) return getPos(i, 1);
+        for (let i = 0; i < 3; i++) {
+            if (getPos(i, 3) != undefined) return getPos(i, 3);
+        }
+        if (getPos(0, 4) != undefined) return getPos(0, 4);
+
+        return getPos(2, 2);
+    }
+    const getBlockMove = (board, letter) => {
+        /**
+         * 
+         * @param {number} i 
+         * @param {number} j 
+         * @returns 
+         */
+        const getPos = (i, j) => {
+            if (board[i] == letter && board[i + j] == letter && board[i + j * 2] == "")
+                return i + j * 2;
+            if (board[i] == letter && board[i + j] == "" && board[i + j * 2] == letter)
+                return i + j;
+            if (board[i] == "" && board[i + j] == letter && board[i + j * 2] == letter)
+                return i;
+        }
+        for (let i = 0; i < 7; i += 3) {
+            if (getPos(i, 1) != undefined) return getPos(i, 1);
+        }
+        for (let i = 0; i < 3; i++) {
+            if (getPos(i, 3) != undefined) return getPos(i, 3);
         }
         if (getPos(0, 4) != undefined) return getPos(0, 4);
 
@@ -53,11 +79,46 @@ const findMoves = (() => {
      * @param {string[]} gameboard 
      * @param {string} letter
      */
-    const mediumPlay = (gameboard, letter) => {
-        if (isEmpty(gameboard))
-            return Math.floor(Math.random() * gameboard.length);
-        var win = getWinningMove(gameboard, letter);
-        return win;
+    const mediumPlay = (board, letter) => {
+        if (isEmptyLetter(board, letter))
+            return Math.floor(Math.random() * board.length);
+
+        var win = getWinningMove(board, letter);
+        console.log(win);
+        if (win != undefined) return win;
+        var block = getBlockMove(board, letter === "X" ? "O" : "X");
+        console.log(block);
+        if (block != undefined) return block;
+
+        /**
+        * 
+        * @param {number} i 
+        * @param {number} j 
+        * @returns 
+        */
+        const getPos = (i, j) => {
+            if (board[i] == "" && board[i + j] == letter && board[i + j * 2] == "") {
+                const moves = [i, i + j * 2];
+                return moves[Math.floor(Math.random() * moves.length)];
+            } if (board[i] == letter && board[i + j] == "" && board[i + j * 2] == "") {
+                const moves = [i + j, i + j * 2];
+                return moves[Math.floor(Math.random() * moves.length)];
+            }
+            if (board[i] == "" && board[i + j] == "" && board[i + j * 2] == letter) {
+                const moves = [i, i + j];
+                return moves[Math.floor(Math.random() * moves.length)];
+            }
+        }
+        for (let i = 0; i < 7; i += 3) {
+            if (getPos(i, 1) != undefined) return getPos(i, 1);
+        }
+        for (let i = 0; i < 3; i++) {
+            if (getPos(i, 3) != undefined) return getPos(i, 3);
+        }
+        if (getPos(0, 4) != undefined) return getPos(0, 4);
+
+        return getPos(2, 2);
+
     }
     /**
      * Finds the move of a computer.
