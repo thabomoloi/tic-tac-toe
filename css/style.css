@@ -1,7 +1,7 @@
 :root {
-  --theme-color1: #3b82f6;
+  --theme-color1: #9dc3ff;
   --theme-color2: #2563eb;
-  --theme-color3: #1d4ed8;
+  --theme-color3: #224ab8;
   --theme-color4: #1e40af;
   --theme-color5: #1e3a8a;
 }
@@ -64,7 +64,7 @@ main {
 }
 
 .gameboard {
-  background-color: var(--theme-color5);
+  background-color: var(--theme-color3);
   min-height: 300px;
   min-width: max(330px, 50vw);
   display: flex;
