@@ -84,10 +84,8 @@ const findMoves = (() => {
             return Math.floor(Math.random() * board.length);
 
         var win = getWinningMove(board, letter);
-        console.log(win);
         if (win != undefined) return win;
         var block = getBlockMove(board, letter === "X" ? "O" : "X");
-        console.log(block);
         if (block != undefined) return block;
 
         /**
