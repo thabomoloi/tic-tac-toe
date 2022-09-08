@@ -274,7 +274,6 @@ const openGameOverModal = (winner) => {
     }
     close.addEventListener("click", () => {
         modal.style.display = "none";
-        gameController.clearGame();
         setTimeout(() => gameController.clearGame(), 500);
     });
 
@@ -341,6 +340,15 @@ const gameController = (() => {
         });
     }
     const clearGame = () => {
+        const xBtn = document.querySelector(".btn.btn-player.x");
+        const oBtn = document.querySelector(".btn.btn-player.o");
+
+        if (oBtn.classList.contains("active")) {
+            xBtn.classList.toggle("active");
+            xBtn.classList.toggle("not-active");
+            oBtn.classList.toggle("active");
+            oBtn.classList.toggle("not-active");
+        }
         ttt.clearBoard();
         buttons.forEach((cell) => {
             const cellSeletor = `#${cell.id} svg`;
