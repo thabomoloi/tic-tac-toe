@@ -2,6 +2,7 @@
  * Contains methods for finding move of a computer
  */
 const findMoves = (() => {
+
     /**
      * Gets the move in an easy mode.
      * Looks for an empty random space.
@@ -15,13 +16,48 @@ const findMoves = (() => {
         }
         return empty[Math.floor(Math.random() * empty.length)];
     }
+    const isEmpty = (board) => {
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] != "")
+                return false;
+        }
+        return true;
+    }
+    const getWinningMove = (board, letter) => {
+        /**
+         * 
+         * @param {number} i 
+         * @param {number} j 
+         * @returns 
+         */
+        const getPos = (i, j) => {
+            if (board[i] == letter && board[i + j] == letter && board[i + j * 2] == "")
+                return i + j * 2;
+            if (board[i] == letter && board[i + j] == "" && board[i + j * 2] == letter)
+                return i + j;
+            if (board[i] == "" && board[i + j] == letter && board[i + j * 2] == letter)
+                return i;
+        }
+        for (let i in [0, 3, 6]) {
+            if (getPos(i, 1) != undefined) return getPos(i, 1);
+        }
+        for (let i in [0, 1, 2]) {
+            if (getPos(i, 3) != undefined) return getPos(i, 1);
+        }
+        if (getPos(0, 4) != undefined) return getPos(0, 4);
+
+        return getPos(2, 2);
+    }
     /**
      * 
      * @param {string[]} gameboard 
      * @param {string} letter
      */
     const mediumPlay = (gameboard, letter) => {
-
+        if (isEmpty(gameboard))
+            return Math.floor(Math.random() * gameboard.length);
+        var win = getWinningMove(gameboard, letter);
+        return win;
     }
     /**
      * Finds the move of a computer.
