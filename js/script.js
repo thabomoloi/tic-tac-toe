@@ -107,16 +107,25 @@ const findMoves = (() => {
                 return moves[Math.floor(Math.random() * moves.length)];
             }
         }
+        var move = undefined;
         for (let i = 0; i < 7; i += 3) {
-            if (getPos(i, 1) != undefined) return getPos(i, 1);
+            if (move == undefined) {
+                move = getPos(i, 1);
+                break;
+            }
         }
         for (let i = 0; i < 3; i++) {
-            if (getPos(i, 3) != undefined) return getPos(i, 3);
+            if (move == undefined) {
+                move = getPos(i, 3);
+                break;
+            }
         }
-        if (getPos(0, 4) != undefined) return getPos(0, 4);
 
-        return getPos(2, 2);
+        if (move == undefined) move = getPos(0, 4);
+        if (move == undefined) move = getPos(2, 2);
+        if (move == undefined) move = easyPlay(board);
 
+        return move;
     }
     /**
      * Finds the move of a computer.
