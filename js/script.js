@@ -188,10 +188,10 @@ const findMoves = (() => {
      */
     const findMove = (gameboard, letter, mode) => {
         const opponent = letter == "X" ? "O" : "X";
-        // if (mode === "easy")
-        //     return easyPlay(gameboard);
-        // if (mode === "medium")
-        //     return mediumPlay(gameboard, letter);
+        if (mode === "easy")
+            return easyPlay(gameboard);
+        if (mode === "medium")
+            return mediumPlay(gameboard, letter);
         
         // Impossible
         let bestScore = -Infinity;
