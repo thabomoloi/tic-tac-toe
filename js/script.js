@@ -74,6 +74,57 @@ const findMoves = (() => {
 
         return getPos(2, 2);
     }
+    const getAvailableMoves = (board) => {
+        const available_moves = []
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] == "")
+                available_moves.push(i);
+        }
+        return available_moves;
+    }
+    const getScore = (board, player, opponent) => {
+        const game_fuctions = game();
+        if (game_fuctions.isWin(opponent, board))
+            return -10;
+        if (game_fuctions.isWin(player, board))
+            return 10;
+        return 0;
+    }
+    const isBoardFull = (board) => {
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] == "") return false;
+        }
+        return true;
+    }
+    const minimax = (board, player, opponent, isMaximizer, depth) => {
+        const game_functions = game();
+        let score = getScore(board, player, opponent);
+
+        // Game is over
+        if (score == 10 || score == -10)
+            return score;
+        if (isBoardFull(board))
+            return 0;
+
+        const moves = getAvailableMoves(board);
+        if (isMaximizer) {
+            let bestScore = -Infinity;
+            for (let i = 0; i < moves.length; i++) {
+                board[moves[i]] = player;
+                bestScore = Math.max(bestScore, minimax(board, player, opponent, !isMaximizer, depth+1))
+                board[moves[i]] = "";
+            }
+            return bestScore;
+        } else {
+            let bestScore = Infinity;
+            for (let i = 0; i < moves.length; i++) {
+                board[moves[i]] = opponent;
+                bestScore = Math.min(bestScore, minimax(board, player, opponent, !isMaximizer, depth+1))
+                board[moves[i]] = "";
+            }
+            return bestScore;
+        }      
+    }
     /**
      * 
      * @param {string[]} gameboard 
@@ -134,10 +185,29 @@ const findMoves = (() => {
      * @param {string} mode 
      */
     const findMove = (gameboard, letter, mode) => {
-        if (mode === "easy")
-            return easyPlay(gameboard);
-        if (mode === "medium")
-            return mediumPlay(gameboard, letter);
+        const opponent = letter == "X" ? "O" : "X";
+        // if (mode === "easy")
+        //     return easyPlay(gameboard);
+        // if (mode === "medium")
+        //     return mediumPlay(gameboard, letter);
+        
+        // Impossible
+        let bestScore = -Infinity;
+        let bestMove = -1;
+
+        const moves = getAvailableMoves(gameboard);
+
+        for (let i = 0; i < moves.length; i++) {
+            gameboard[moves[i]] = letter;
+            const score = minimax(gameboard, letter, opponent, false, 0);
+            gameboard[moves[i]] = "";
+
+            if (score >= bestScore) {
+                bestScore  = score;
+                bestMove = moves[i];
+            }
+        }
+        return bestMove;
     }
 
     return { findMove };
