@@ -101,8 +101,10 @@ const findMoves = (() => {
         let score = getScore(board, player, opponent);
 
         // Game is over
-        if (score == 10 || score == -10)
-            return score;
+        if (score == 10) 
+            return score - depth;
+        if (score == -10)
+            return score + depth;
         if (isBoardFull(board))
             return 0;
 
