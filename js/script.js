@@ -427,6 +427,9 @@ const gameController = (() => {
             const svgs = document.querySelectorAll(cellSeletor);
             svgs.forEach((svg) => { svg.style.display = ""; });
             cell.disabled = false;
+
+            const selectMode = document.querySelector("select");
+            selectMode.disabled = false;
         });
     }
 
@@ -477,6 +480,7 @@ const GAME = (() => {
             item.addEventListener("click", () => {
                 let position = parseInt(item.id.charAt(item.id.length - 1));
                 gameController.playerMove(position);
+                selectMode.disabled = true;
             });
         });
 
