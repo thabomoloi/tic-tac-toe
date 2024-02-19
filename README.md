@@ -12,4 +12,4 @@ The game has three modes
 - Impossible
   + This mode uses the minimax algorithm. It is impossible to beat the AI.
 
-## [Live Demo](https://thabomcodes.github.io/tic-tac-toe/)
+## [Live Demo](https://thabomoloi.github.io/tic-tac-toe/)
